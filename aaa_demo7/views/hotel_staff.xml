@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menu item for HotelStaff -->
+        <menuitem id="hotel_staff_menu"
+        name="Nhân Viên"
+        parent="aaa_demo2.hotel_root"
+        action="action_hotel_staff"
+        sequence="8"/>
+
+        <!-- Form view for HotelStaff -->
+        <record id="hotel_staff_view_form" model="ir.ui.view">
+            <field name="name">Hotel Staff Form</field>
+            <field name="model">hotel.staff</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="position"/>
+                                <field name="image" widget="image" options='{"preview_image": false}'/>
+                            </group>
+                            <group>
+                                <field name="id_card"/>
+                                <field name="gender"/>
+                                <field name="phone_number"/>
+                                <field name="address"/>
+                            </group>
+                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- List view for HotelStaff -->
+        <record id="view_hotel_staff_list" model="ir.ui.view">
+            <field name="name">Hotel Staff List</field>
+            <field name="model">hotel.staff</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách nhân viên">
+                    <field name="name"/>
+                    <field name="position"/>
+                    <field name="id_card"/>
+                    <field name="gender"/>
+                    <field name="phone_number"/>
+                    <field name="address"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action for HotelStaff -->
+        <record id="action_hotel_staff" model="ir.actions.act_window">
+            <field name="name">Nhân Viên Khách Sạn</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hotel.staff</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Quản lý thông tin nhân viên khách sạn.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

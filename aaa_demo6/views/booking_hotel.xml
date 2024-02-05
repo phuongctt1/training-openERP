@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="booking_hotel_menu"
+        name="Đặt Phòng"
+        parent="aaa_demo2.hotel_root" 
+        action="booking_hotel_action"
+        sequence="7"/>
+
+        <record id="booking_hotel_view_form" model="ir.ui.view">
+            <field name="name">Booking Hotel Form</field>
+            <field name="model">booking.hotel</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="customer_name"/>
+                                <field name="id_card"/>
+                                <field name="location"/>
+
+                            </group>
+                            <group>
+                                <field name="check_in_date"/>
+                                <field name="check_out_date"/>
+                                <field name="number_of_nights"/>
+                                <field name="guests_and_rooms"/>
+                            </group>
+                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="booking_hotel_list_view" model="ir.ui.view">
+            <field name="name">Booking Hotel List</field>
+            <field name="model">booking.hotel</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách thuê phòng">
+                    <field name="customer_name"/>
+                    <field name="id_card"/>
+                    <field name="location"/>
+                    <field name="check_in_date"/>
+                    <field name="check_out_date"/>
+
+                    <field name="number_of_nights"/>
+                    <field name="guests_and_rooms"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="booking_hotel_action" model="ir.actions.act_window">
+            <field name="name"> Đặt phòng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">booking.hotel</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new booking hotel room!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

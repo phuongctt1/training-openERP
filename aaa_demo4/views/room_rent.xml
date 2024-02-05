@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="room_rent_menu"
+        name="Thuê Phòng"
+        parent="aaa_demo2.hotel_root" 
+        action="room_rent_action"
+        sequence="6"/>
+
+        <record id="room_rent_view_form" model="ir.ui.view">
+            <field name="name">Room rent Form</field>
+            <field name="model">room.rent</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="identification_card"/>
+                                <field name="check_in_date"/>
+                                <field name="check_out_date"/>
+                            </group>
+                            <group>
+                                <field name="room_type"/>
+                                <field name="room_number"/>
+                                <field name="room_price"/>
+                                <field name="total_amount" store="True"/>
+                            </group>
+
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="room_rent_list_view" model="ir.ui.view">
+            <field name="name">Room Rent List</field>
+            <field name="model">room.rent</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách thuê phòng">
+                    <field name="name"/>
+                    <field name="check_in_date"/>
+                    <field name="check_out_date"/>
+                    <field name="room_type"/>
+                    <field name="room_number"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="room_rent_action" model="ir.actions.act_window">
+            <field name="name">Thông tin thuê phòng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">room.rent</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new rent room!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

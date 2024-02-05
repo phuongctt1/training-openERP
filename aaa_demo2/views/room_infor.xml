@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="hotel_root"
+        name="Hotel Management"
+        sequence="5"/>
+
+        <menuitem id="room_infor_root"
+        name="Phòng"
+        parent="hotel_root"
+        sequence="5"/>
+
+        <menuitem id="room_infor"
+        name="Phòng"
+        parent="room_infor_root"
+        action="room_infor_action"
+        sequence="5"/>
+
+        <record id="room_infor_view_form" model="ir.ui.view">
+            <field name="name">Room Infor Form</field>
+            <field name="model">room.infor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="room_number"/>
+                                <field name="room_type"/>
+                                <field name="room_image" widget="image" options='{"preview_image": false}'/>
+                            </group>
+                            <group>
+                                <field name="floor"/>
+                                <field name="maximunmenber"/>
+                                <field name="services"/>
+                                <field name="status"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_room_infor_search" model="ir.ui.view">
+            <field name="name">room.infor.search</field>
+            <field name="model">room.infor</field>
+            <field name="arch" type="xml">
+                <search string="Roominfor">
+                    <field name="room_number"/>
+                    <field name="room_type"/>
+                    <separator/>
+                    <filter string="Phòng trống" name="available" domain="[('status','=','available')]"/>
+                    <filter string="Phòng đã đặt" name="booked" domain="[('status','=','booked')]"/>
+                    <filter string="Phòng đang thuê" name="occupied" domain="[('status','=','occupied')]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Trạng thái" name="status" context="{'group_by':'status'}"/>
+                        <filter string="số phòng" name="room_number" context="{'group_by':'room_number'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+        <record id="room_infor_view_kanban" model="ir.ui.view">
+            <field name="name">Room Infor Kaban</field>
+            <field name="model">room.infor</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="room_number"/>
+                    <field name="room_type"/>
+                    <field name="floor"/>
+                    <field name="maximunmenber"/>
+                    <field name="room_image"/>
+                    <field name="services"/>
+                    <field name="status"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            <img t-att-src="'data:image/png;base64,%s' % record.room_image" width="50" height="50"/>
+                                        </li>
+                                        <li>
+                                            <field name="room_number"/>
+                                        </li>
+                                        <li>
+                                            <field name="floor"/>
+                                        </li>
+                                        <li>
+                                            <field name="status"/>
+                                        </li>                                        
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="room_infor_list_view" model="ir.ui.view">
+            <field name="name">Room Infor List</field>
+            <field name="model">room.infor</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách phòng">
+                    <field name="room_number"/>
+                    <field name="room_type"/>
+                    <field name="floor"/>
+                    <field name="maximunmenber"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="room_infor_action" model="ir.actions.act_window">
+            <field name="name">Thông tin phòng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">room.infor</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new room!
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>
